@@ -36,8 +36,17 @@ int main(int argc, char** argv) {
 	P.ReadFile(filename);
 
 	std::cout << "В каком заголовке лежит ключ X?" << std::endl;
-	std::cout << P.findKeyX("var6");
-
+	std::cout << P.findKeyX("var1")<< std::endl;
+	std::cout << "Существует ли заголовок?" << std::endl;
+	std::cout << P.ifTitleXExist("Section5") << std::endl;
+	std::cout << "Существует ли ключ Х в файле?" << std::endl;
+	std::cout << P.ifKeyXExist("var1") << std::endl;
+	std::cout << "Существует ли значение Х в файле?" << std::endl;
+	std::cout << P.ifValueXExist("value_1") << std::endl;
+	std::cout << "Какое значение у ключа X в секции Y?" << std::endl;
+	P.valueXinY("var7", "Section3");
+	std::cout << " Обратиться к секции X и присвоить ключу Y значение Z (если ключа илисекции не существует - создать" << std::endl;
+	P.convertValue("Section1", "var1", "value_33");
 
 
 

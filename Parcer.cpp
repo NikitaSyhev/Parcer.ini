@@ -19,20 +19,62 @@ std::string Parcer::findKeyX(const std::string& keyX)
 	}
 }
 
-bool Parcer::ifTitleXExist(const std::string& x)
+bool Parcer::ifTitleXExist(const std::string& title)
 {
-
-	return false;
+	for (const auto& section : _sections) {
+		if (section.first == title) {
+			return true;
+		}
+	}
 }
 
-bool Parcer::ifKeyXExist(const std::string& x)
+bool Parcer::ifKeyXExist(const std::string& keyX)
 {
-	return false;
+	for (const auto& section : _sections) {
+		for (const auto& element : section.second) {
+			if (element.first == keyX)
+				return true;
+		}
+	}
 }
 
-bool Parcer::ifValueXExist(const std::string& x)
+bool Parcer::ifValueXExist(const std::string& value)
 {
-	return false;
+	for (const auto& section : _sections) {
+		for (const auto& element : section.second) {
+			if (element.second == value)
+				return true;
+		}
+	}
+}
+
+void Parcer::valueXinY(const std::string& key, const std::string &sectionY)
+{
+	int num = 0;
+	for (const auto& section : _sections) {
+		for (const auto& element : section.second) {
+			if (section.first == sectionY && element.first == key) {
+				std::cout << "Value = " << element.second << std::endl;
+				num++;			
+			}
+		}
+	}
+	if (num < 1) {
+		std::cout << "There is not keys" << std::endl;
+	}
+}
+
+void Parcer::convertValue(const std::string& sectionX, const std::string& key, const std::string& value)
+{
+	for (const auto& section : _sections) {
+		for (const auto& element : section.second) {
+			if (section.first == sectionX && element.first == key) {
+				_sections[sectionX][key] = value;
+				std::cout << "New value = " << value;
+
+			}
+		}
+	}
 }
 
 void Parcer::ReadFile(const std::string& filename)
@@ -58,10 +100,8 @@ void Parcer::ReadFile(const std::string& filename)
 
 			_sections[sectionName][key] = value;
 
-			for (const auto& section : _sections) {
-				std::cout << " [ " << section.first << " ] " <<  std::endl;
-				
-			}
+		
+			
 			}
 		}
 	
