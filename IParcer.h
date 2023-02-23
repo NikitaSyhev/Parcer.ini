@@ -12,6 +12,7 @@ public:
 	virtual bool ifValueXExist(const std::string& value) = 0;
 	virtual void valueXinY(const std::string& key, const std::string& sectionY) = 0;
 	virtual void convertValue(const std::string& sectionX, const std::string& key, const std::string &value) = 0;
+	virtual const void saveFile() = 0;
 	virtual ~IParcer() {}
 };
 

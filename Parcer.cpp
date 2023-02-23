@@ -77,6 +77,22 @@ void Parcer::convertValue(const std::string& sectionX, const std::string& key, c
 	}
 }
 
+const void Parcer::saveFile()
+{
+	std::ofstream out;
+	out.open("file.txt");
+	if (out.is_open()) {
+		for (const auto& section : _sections) {
+			out << section.first << std::endl;
+			for (const auto& element : section.second) {
+				out << element.first << std::endl;
+				out << element.second << std::endl;
+			}
+		}
+	}
+}
+
+
 void Parcer::ReadFile(const std::string& filename)
 {
 	
