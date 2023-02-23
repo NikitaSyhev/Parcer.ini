@@ -32,15 +32,11 @@ int main(int argc, char** argv) {
 	std::cout << "Enter a filename: " << std::endl; // enter a filename.ini
 	std::cin >> filename;
 	Parcer P;
-	//P.ReadFile(filename);
-	P.findKeyX("var1", filename);
+	
+	P.ReadFile(filename);
 
-
-
-
-
-
-
+	std::cout << "В каком заголовке лежит ключ X?" << std::endl;
+	std::cout << P.findKeyX("var1") << std::endl;
 
 
 

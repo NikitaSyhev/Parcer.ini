@@ -1,25 +1,18 @@
 #include "Parcer.h"
 #include <fstream>
 #include <map>
-
-const std::string Parcer::findKeyX(const std::string& x, std::string &filename)
-{
-	std::ifstream in;
+#include <string>
 
 
 
-	in.open(filename, std::ios::in);
-	if (!in) {
-		std::cerr << "File opening error" << std::endl;
-	}
 
 
-	in.close();
-	return x;
+std::string Parcer::findKeyX(const std::string& keyX)
+{ 
+
+	
+	return "char";
 }
-
-
-
 
 bool Parcer::ifTitleXExist(const std::string& x)
 {
@@ -39,26 +32,47 @@ bool Parcer::ifValueXExist(const std::string& x)
 
 void Parcer::ReadFile(const std::string& filename)
 {
+	
 	std::ifstream in; // вот здесь нужно реализовать поиск так, чтобы читать секции, и пушить в мапу мап, и потом 7 функций сделать
-	in.open(filename, std::ios::in);
 	std::string sectionName, key, value;
-	std::map<std::string, std::map<std::string, std::string>> sections;
+	std::map < std::string, std::map<std::string, std::string>> _sections;
+	std::map <std::string, std::string> mapKeyValue;
+	char c = ']';
+
+	std::string currentLine;
 
 
+	in.open(filename);
 	if (in.is_open()) {
 		while (!in.eof()) {
-			std::string str;
-			in >> str;
-			std::cout << str << std::endl;
-		}
-	}
-	else
-	{
-		std::cout << "File opening error" << std::endl;
-	}
+			getline(in, currentLine);
 
+			if (currentLine[0] == '[') {
+				sectionName = currentLine.substr(1, currentLine.find(']') - 1);
+
+				
+			}
+			if (currentLine[0] != ';' && currentLine[0] != '[' && currentLine[0] != '#') {
+				key = currentLine.substr(0, currentLine.find('='));
+				value = currentLine.substr(currentLine.find('=') + 1, currentLine.find(';'));
+				_sections[sectionName][key] = value;
+				}
+			for (const auto& section : _sections) {
+				std::cout << " [ " << section.first << " ] " <<  std::endl;
+				for (const auto& element : section.second) {
+					std::cout << " key = " << element.first << " value =  " << element.second << std::endl;
+				}
+			}
+			}
+		}
+	
 	in.close();
 }
+
+
+
+
+
 // считать файл
 // посмотрреть по секциям в ini файле
 // считать в мапу
