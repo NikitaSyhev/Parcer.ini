@@ -77,10 +77,10 @@ void Parcer::convertValue(const std::string& sectionX, const std::string& key, c
 	}
 }
 
-const void Parcer::saveFile()
+const void Parcer::saveFile(const std::string& nameFile)
 {
 	std::ofstream out;
-	out.open("file.txt");
+	out.open(nameFile);
 	if (out.is_open()) {
 		for (const auto& section : _sections) {
 			out << section.first << std::endl;
@@ -128,16 +128,3 @@ void Parcer::ReadFile(const std::string& filename)
 
 
 
-// считать файл
-// посмотрреть по секциям в ini файле
-// считать в мапу
-// реализовать 7 функции и запушить в новый ini файл ( решение задачи )
-
-
-
-//for (const auto& sections : sections) {
-//	std::cout << "[" << sections.first << "]" << std::endl;
-//	for (const auto& element : sections.second) {
-//		std::cout << "key: " << element.first << "value" << element.second << std::endl;
-//	}
-//}
