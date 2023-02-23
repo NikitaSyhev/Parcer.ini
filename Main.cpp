@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
 	P.ReadFile(filename);
 
 	std::cout << "В каком заголовке лежит ключ X?" << std::endl;
-	std::cout << P.findKeyX("var1") << std::endl;
+	std::cout << P.findKeyX("var6");
 
 
 
