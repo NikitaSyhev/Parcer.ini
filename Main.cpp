@@ -14,14 +14,13 @@ int main(int argc, char** argv) {
 	SetConsoleOutputCP(1251);
 	std::string key, title, value, nameFile;
 	int x;
-	if (argc > 1) {
-			std::string filename(argv[1]);
+	if (argc >= 0) {
+			std::string filename(argv[0]);
 			std::cout << filename << std::endl;
 			std::fstream fin(filename);
 	}
-	else {
-		std::cout << "Only one argument was provided" << std::endl;
-	}
+	
+	
 
 	do {
 		std::cout << "Задания для парсинга: \n";
