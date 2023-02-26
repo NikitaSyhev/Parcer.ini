@@ -95,8 +95,8 @@ const void Parcer::saveFile(const std::string& nameFile)
 
 void Parcer::ReadFile(const std::string& filename)
 {
-	
-	std::ifstream in; // вот здесь нужно реализовать поиск так, чтобы читать секции, и пушить в мапу мап, и потом 7 функций сделать
+
+	std::ifstream in;
 	std::string sectionName, key, value;
 	std::string currentLine;
 	in.open(filename);
@@ -106,21 +106,29 @@ void Parcer::ReadFile(const std::string& filename)
 
 			if (currentLine[0] == '[') {
 				sectionName = currentLine.substr(1, currentLine.find(']') - 1);
-
+				key = "";
+				value = "";
+				_sections[sectionName][key] = value;
 			}
-			if (currentLine[0] != ';' && currentLine[0] != '[' && currentLine[0] != '#') {
-				key = currentLine.substr(0, currentLine.find('='));
-				value = currentLine.substr(currentLine.find('=') + 1, currentLine.find(';'));
+
+			else if (currentLine[0] != ';' && currentLine[0] != '#') {
+				
+				if (currentLine.rfind(";") > 0) {
+					currentLine = currentLine.substr(0, currentLine.find(";"));
+					key = currentLine.substr(0, currentLine.find('='));
+					value = currentLine.substr(currentLine.find('=') + 1, currentLine.find(";"));
+					_sections[sectionName][key] = value;
 				}
-
-
-			_sections[sectionName][key] = value;
-
-		
-			
+				else {
+					key = currentLine.substr(0, currentLine.find('='));
+					value = currentLine.substr(currentLine.find('=') + 1, currentLine.find(' '));
+					_sections[sectionName][key] = value;
+				}
+				
 			}
 		}
-	
+	}
+
 	in.close();
 }
 

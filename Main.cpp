@@ -13,15 +13,19 @@ int main(int argc, char** argv) {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	std::string key, title, value, nameFile;
-	int x;
-	if (argc >= 0) {
-			std::string filename(argv[0]);
+	int questinonNumber;
+	if (argc >  1) {
+			std::string filename(argv[1]);
 			std::cout << filename << std::endl;
 			std::fstream fin(filename);
+			
+
+	}
+	else
+	{
+		std::cout << "Only one argument was provaded" << std::endl;
 	}
 	
-	
-
 	do {
 		std::cout << "Задания для парсинга: \n";
 		std::cout << "1. В каком заголовке лежит ключ X?\n";
@@ -34,12 +38,12 @@ int main(int argc, char** argv) {
 
 
 		std::cout << "Выберете необходимый вопрос: \n";
-		
-		std::cin >> x;
+
+		std::cin >> questinonNumber;
 		std::string path("filename.ini");
 		Parcer P;
 		P.ReadFile(path);
-		switch (x)
+		switch (questinonNumber)
 		{
 		case 1:std::cout << "Введите ключ для поиска: \n";std::cin >> key;std::cout << P.findKeyX(key) << std::endl;break;
 		case 2:std::cout << "Введите заголовок для поиска: \n"; std::cin >> title;std::cout << P.ifTitleXExist(title) << std::endl;break;
@@ -47,10 +51,11 @@ int main(int argc, char** argv) {
 		case 4:std::cout << "Введите значение для проверки: \n"; std::cin >> value;	std::cout << P.ifValueXExist(value) << std::endl;break;
 		case 5:std::cout << "Введите заголовок и ключ: \n"; std::cin >> title; std::cin >> key; P.valueXinY(key, title);break;
 		case 6:std::cout << "Введите заголовок, ключ и новое значение: \n"; std::cin >> title; std::cin >> key, std::cin >> value;P.convertValue(title, key, value);break;
-		case 7:std::cout << "Введите название файла в виде: file.txt: \n"; std::cin >> nameFile;P.saveFile(nameFile);break;
+		case 7:std::cout << "Введите название файла в виде: file.ini: \n"; std::cin >> nameFile;P.saveFile(nameFile);break;
 			break;
 		}
-	} while (x < 8);
+	} while (questinonNumber < 8);
+
 	
 
 
