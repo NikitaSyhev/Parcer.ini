@@ -5,8 +5,8 @@ class Parcer : public IParcer
 {
 public:
 
-	void ReadFile(const std::string& filename) override;
-	std::string findKeyX(const std::string& keyX);
+	void ReadFile(const std::string& filename) override; // функции которые не мен€ют пол€ класса - константные
+	const std::string &findKeyX(const std::string& keyX);
 	bool ifTitleXExist(const std::string& title);
 	bool ifKeyXExist(const std::string& keyX);
 	bool ifValueXExist(const std::string& value);

@@ -3,15 +3,14 @@
 #include <fstream>
 #include "IParcer.h"
 #include "Parcer.h"
-#include <Windows.h>
+
 
 
 
 
 int main(int argc, char** argv) {
 	setlocale(LC_ALL, "Russian");
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+
 	std::string key, title, value, nameFile;
 	int questinonNumber;
 	if (argc >  1) {
@@ -54,18 +53,5 @@ int main(int argc, char** argv) {
 	{
 		std::cout << "Only one argument was provided" << std::endl;
 	}
-	
-	
-
-	
-
-
-	
-	
-
-
-
-
-
 	return 0;
 }

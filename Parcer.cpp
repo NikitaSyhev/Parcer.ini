@@ -7,13 +7,14 @@
 
 
 
-std::string Parcer::findKeyX(const std::string& keyX)
+const std::string &Parcer::findKeyX(const std::string& keyX)
 {
 	for (const auto& section : _sections) {
 		for (const auto& element : section.second) {
 			if (element.first == keyX) {
 				return section.first;
 			}
+			else return "";
 		}
 		
 	}
@@ -82,11 +83,13 @@ const void Parcer::saveFile(const std::string& nameFile)
 	std::ofstream out;
 	out.open(nameFile);
 	if (out.is_open()) {
+		
 		for (const auto& section : _sections) {
-			out << section.first << std::endl;
+			out << "[" << section.first << "]" << std::endl;
 			for (const auto& element : section.second) {
-				out << element.first << std::endl;
-				out << element.second << std::endl;
+				if (element.first != "") {
+					out << element.first << " = " << element.second << std::endl;
+				} 
 			}
 		}
 	}
